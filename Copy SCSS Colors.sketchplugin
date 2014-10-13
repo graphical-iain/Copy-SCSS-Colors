@@ -1,0 +1,78 @@
+// Sketch Plugin: Get SCSS Variables (cmd shift c)
+// Source github.com/graphical-iain/Copy-SCSS-Colors
+// Version 1.0
+
+(function() {
+	
+	var scssVars = "";
+
+
+	var clipboard = {
+		// store the pasteboard object
+		pasteBoard : null,
+	 
+		// save the pasteboard object
+		init : function()
+		{
+			this.pasteBoard = NSPasteboard.generalPasteboard();
+		},
+		// set the clipboard to the given text
+		set : function( text )
+		{
+			if( typeof text === 'undefined' ) return null;
+	 
+			if( !this.pasteBoard )
+				this.init();
+	 
+			this.pasteBoard.declareTypes_owner( [ NSPasteboardTypeString ], null );
+			this.pasteBoard.setString_forType( text, NSPasteboardTypeString );
+	 
+			return true;
+		}
+	};
+
+
+	//returns background color as scss varable delaration:
+	// $c-["layer name"]: #["hex"];
+	// ( eg. $c-red: #ff0000; )
+	var getBackground = function getBackground(layer){
+		
+
+		if (layer.class() == MSShapeGroup)  {
+
+			var color = layer.style().fill().color().hexValue().toLowerCase();
+			var name = layer.name().toLowerCase().replace(" ", "-");
+
+			return "\n$c-" + name + ": #" + color + ";";
+
+		}
+		
+		else {
+			return "";
+		}
+
+	}
+
+
+	for ( var i=0; i<selection.count(); i++ ) {
+		var layer = selection[i];
+
+		if (layer.class() == MSLayerGroup){
+			var subLayers = layer.children();
+
+			for (var j=0; j<subLayers.count(); j++) {
+				scssVars += getBackground(subLayers.objectAtIndex(j));
+			}
+
+		}
+
+		else {
+			scssVars += getBackground(layer);
+		}
+		
+	}
+
+
+	clipboard.set(scssVars + "\n");
+
+})();
