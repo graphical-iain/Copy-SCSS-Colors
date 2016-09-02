@@ -2,9 +2,8 @@
 Sketch.app plugin for creating SCSS color variable declarations from a selection of color shape objects.
 
 ## Installation
-1. Download and open `Copy-SCSS-Colors-master.zip`
-2. Navigate the Sketch menu bar to `Plugins ▸ Reveal Plugins Folder...`
-3. Place `Copy SCSS Colors.sketchplugin` into the revealed plugins directory
+1. Download and unzip the repository
+2. Double click `Copy SCSS Colors.sketchplugin` to open with Sketch and auto install the plugin
  
 ## How to Use
 Select `Plugins ▸ Copy SCSS Colors` in the Sketch menu bar or use the keyboard shortcut to copy the SCSS variable declarations to your clipboard.

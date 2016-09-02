@@ -1,0 +1,25 @@
+{
+  "name" : "Copy SCSS Colors",
+  "description" : "Copt SCSS color variable declarations to your clipboard from a selection of color shape objects",
+  "author" : "iain eudailey",
+  "identifier" : "com.example.sketch.53bfd550-238f-46b6-8b3b-8373105d6acc",
+  "version" : "2.0",
+  "homepage" : "http://github.com/graphical-iain/Copy-SCSS-Colors",
+  "commands" : [
+    {
+      "script" : "script.cocoascript",
+      "name" : "Copy SCSS Colors",
+      "shortcut": "cmd shift c",
+      "handlers" : {
+        "run" : "next"
+      },
+      "identifier" : "copy-colors"
+    }
+  ],
+  "menu" : {
+    "items" : [
+      "copy-colors"
+    ],
+    "title" : "Copy SCSS Colors"
+  }
+}
