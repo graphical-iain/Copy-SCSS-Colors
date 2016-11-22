@@ -11,7 +11,7 @@
       "name" : "Copy SCSS Colors",
       "shortcut": "cmd shift c",
       "handlers" : {
-        "run" : "next"
+        "run" : "onRun"
       },
       "identifier" : "copy-colors"
     }
