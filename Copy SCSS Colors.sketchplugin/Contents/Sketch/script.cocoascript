@@ -31,11 +31,11 @@ var onRun = function(context) {
 	var getBackground = function getBackground(layer){
 		
 
-		if ( layer.class() == MSShapeGroup ) {
-
-			var color = layer.style().fill().color().hexValue().toLowerCase();
+		if ( layer.class() == MSShapeGroup && layer.style().fills().count() > 0 ) {
+			var color = layer.style().fills().firstObject().color().immutableModelObject().hexValue().toLowerCase();
 			var name = layer.name().toLowerCase().replace(" ", "-");
 
+			log(color);
 			return "\n$c-" + name + ": #" + color + ";";
 
 		}	else {
@@ -44,9 +44,11 @@ var onRun = function(context) {
 	};
 
 
+
+	var selection = context.selection;
+
 	for ( var i=0; i<selection.count(); i++ ) {
 		var layer = selection[i];
-
 		if (layer.class() == MSLayerGroup){
 			var subLayers = layer.children();
 
@@ -59,10 +61,11 @@ var onRun = function(context) {
 		else {
 			scssVars += getBackground(layer);
 		}
-		
 	}
 
 
+
 	clipboard.set(scssVars + "\n");
+
 
 };
